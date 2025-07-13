@@ -12,8 +12,8 @@
 
 // export default App
 import { useState, useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './services/firebase_config';
+// import { onAuthStateChanged } from 'firebase/auth';
+// import { auth } from './services/firebase_config';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Chatbox from "./pages/console";
@@ -32,14 +32,14 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setCheckingAuth(false); // We are done loading
-    });
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     setUser(user);
+  //     setCheckingAuth(false); // We are done loading
+  //   });
 
-    return () => unsubscribe();
-  }, []);
+  //   return () => unsubscribe();
+  // }, []);
 
   const handlelogin = (token) => {
     window.location.href = '/chatbox';  // Fixed 'windows' to 'window'

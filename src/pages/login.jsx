@@ -17,7 +17,7 @@ import { ClipLoader } from 'react-spinners';
 // import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the Font Awesome CSS
 
 
-import { signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail, provider_twitter, TwitterAuthProvider, auth, provider_facebook, signInWithRedirect, GoogleAuthProvider, signInWithPhoneNumber, FacebookAuthProvider, getRedirectResult, signInWithPopup } from '../services/firebase_config'
+// import { signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail, provider_twitter, TwitterAuthProvider, auth, provider_facebook, signInWithRedirect, GoogleAuthProvider, signInWithPhoneNumber, FacebookAuthProvider, getRedirectResult, signInWithPopup } from '../services/firebase_config'
 
 const Login = () => {
   const navigate = useNavigate()  // Add this hook
@@ -39,23 +39,23 @@ const Login = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          const credential = TwitterAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          if (token) {
-            localStorage.setItem('token', token);
-            navigate('/chatbox');
-          }
-          const user = result.user;
-        }
-      })
-      .catch((error) => {
-        console.error('Redirect sign-in error:', error);
-      });
-  }, [navigate]);
+  // useEffect(() => {
+  //   getRedirectResult(auth)
+  //     .then((result) => {
+  //       if (result) {
+  //         const credential = TwitterAuthProvider.credentialFromResult(result);
+  //         const token = credential.accessToken;
+  //         if (token) {
+  //           localStorage.setItem('token', token);
+  //           navigate('/chatbox');
+  //         }
+  //         const user = result.user;
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('Redirect sign-in error:', error);
+  //     });
+  // }, [navigate]);
 
 
   // getRedirectResult(auth)
