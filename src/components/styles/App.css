@@ -1,0 +1,137 @@
+/* .fas.fa-arrow-right-long::after {
+  content: '';
+  transform: scaleX(2);
+  display: inline-block;
+  transform-origin: left center;
+  width: 10px;
+  height: 2px;
+  background: currentColor;
+  margin-left: 2px;
+  vertical-align: middle;
+} */
+ .scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+.phone-signin{
+  position: absolute;
+  top: 30%;
+  left: 40%
+}
+.phone-content{
+  text-align: center;
+}
+
+ .fas.fa-arrow-right-long::after {
+  content: '';
+  /* width: 20px;
+  height: 2px; */
+  transform: scaleX(2);
+  background: linear-gradient(to right, cyan, transparent);
+  /* margin-left: 6px; */
+  display: inline-block;
+}
+
+
+.glow-on-click {
+    transition: all 0.3s ease;
+}
+
+.glow-on-click:hover {
+    box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.5);
+    transform: translateY(-1px);
+}
+
+.scrollbar {
+    overflow-y: auto;
+    scrollbar-width: 4px;
+    scrollbar-color: #262d3d #0f1117;
+    -ms-overflow-style: none;
+}
+.scrollbar-side {
+    overflow-y: auto;
+    scrollbar-width: 4px;
+    /* scrollbar-color: #262d3d #0f1117; */
+    scrollbar-color: #505975 #141820;
+    -ms-overflow-style: none;
+}
+
+.message-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-container::-webkit-scrollbar-track {
+    background: #0f1117;
+    border-radius: 10px;
+}
+
+.message-container::-webkit-scrollbar-thumb {
+    background: #262d3d;
+    border-radius: 10px;
+}
+
+.button-hover {
+    transition: all 0.2s ease;
+}
+
+.button-hover:hover {
+    transform: scale(1.1);
+}
+
+.active-glow {
+    box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.5);
+    background-color: rgba(59, 130, 246, 0.2);
+    color: white !important;
+}
+
+
+
+/* its for auth only:  */
+.button-glow {
+    position: relative;
+  }
+  
+  .button-glow::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: inherit;
+    filter: blur(14px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: inherit;
+  }
+  
+  .button-glow:hover::after {
+    opacity: 0.4;
+  }
+
+/* its for auth only:  */
+.text-gradient {
+    text-shadow: 0 0 20px rgba(129, 140, 248, 0.5);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
