@@ -322,7 +322,8 @@ const Login = () => {
 
   const handleOAuthLogin = (provider) => {
     if (provider === 'google') {
-      window.location.href = `http://localhost:5004/login/${provider}`
+      // window.location.href = `http://localhost:5004/login/${provider}`
+      window.location.href = `https://med64-auth.onrender.com/login/${provider}`
     }
     else if (provider === 'twitter') {
       window.location.href = `http://localhost:5004/login/${provider}`
