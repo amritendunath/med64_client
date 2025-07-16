@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'  // Add this import at the top
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "../components/ui/card"
-import { Label } from "../components/ui/label"
-import { Phone, Mail, GalleryVerticalEnd } from "lucide-react"
+// import { Button } from "../components/ui/button"
+// import { Input } from "../components/ui/input"
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "../components/ui/card"
+// import { Label } from "../components/ui/label"
+// import {Mail, GalleryVerticalEnd} from "lucide-react"
+import { Phone } from "lucide-react"
 import geneticSvg from '../genetic-data-svgrepo-com.svg'
-import { LoginForm } from '../components/ui/login-form'
+// import { LoginForm } from '../components/ui/login-form'
 import RightPanelContent from '../components/ui/rightpanel'
 import { ClipLoader } from 'react-spinners';
 
@@ -322,13 +323,14 @@ const Login = () => {
 
   const handleOAuthLogin = (provider) => {
     if (provider === 'google') {
-      window.location.href = `http://localhost:5004/login/${provider}`
+      window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
+      // window.location.href = `http://localhost:5004/login/${provider}`
     }
     else if (provider === 'twitter') {
-      window.location.href = `http://localhost:5004/login/${provider}`
+      window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
     }
     else if (provider === 'microsoft') {
-      window.location.href = `http://localhost:5004/login/${provider}`
+      window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
     }
     else if (provider === 'phone') {
       navigate('/phone')  // Navigate to phone component
@@ -336,7 +338,7 @@ const Login = () => {
   }
 
   const statusEmail = async () => {
-    const response = await fetch('http://localhost:5004/login/email_status', {
+    const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/email_status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -349,7 +351,7 @@ const Login = () => {
     return data.status
   }
   const checkUser = async () => {
-    const response = await fetch('http://localhost:5004/login/name_status', {
+    const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/name_status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -365,7 +367,7 @@ const Login = () => {
   }
 
   const sendOtp = async () => {
-    const response = await fetch('http://localhost:5004/login/email', {
+    const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -36,7 +36,7 @@ const NamePage = () => {
 
         try {
             sessionStorage.setItem('name', name);
-            const response = await fetch('http://localhost:5004/login/email', {
+            const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/email`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -83,13 +83,13 @@ const NamePage = () => {
     }
     const handleOAuthLogin = (provider) => {
         if (provider === 'google') {
-            window.location.href = `http://localhost:5004/login/${provider}`
+            window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
         }
         else if (provider === 'twitter') {
-            window.location.href = `http://localhost:5004/login/${provider}`
+            window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
         }
         else if (provider === 'microsoft') {
-            window.location.href = `http://localhost:5004/login/${provider}`
+            window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
         }
         else if (provider === 'phone') {
             navigate('/phone')  // Navigate to phone component
