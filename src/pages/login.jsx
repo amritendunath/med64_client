@@ -339,7 +339,7 @@ const Login = () => {
   }
 
   const statusEmail = async () => {
-    const response = await fetch('http://localhost:5004/login/email_status', {
+    const response = await fetch('http://3.80.145.211/auth/login/email_status', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -352,7 +352,7 @@ const Login = () => {
     return data.status
   }
   const checkUser = async () => {
-    const response = await fetch('http://localhost:5004/login/name_status', {
+    const response = await fetch('http://3.80.145.211/auth/login/name_status', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -368,7 +368,7 @@ const Login = () => {
   }
 
   const sendOtp = async () => {
-    const response = await fetch('http://localhost:5004/login/email', {
+    const response = await fetch('http://3.80.145.211/auth/login/email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
