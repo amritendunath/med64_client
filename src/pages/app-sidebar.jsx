@@ -81,6 +81,8 @@ export function AppSidebar({ onSelectChatSession }) {
           }
         });
         console.log("chatSessionsResponse", chatSessionsResponse)
+        console.log("chatSessionsResponse.content", chatSessionsResponse.content)
+        console.log("chatSessionsResponse.content.sessions", chatSessionsResponse.content.sessions)
         const text = await chatSessionsResponse.text();
         console.log("RAW RESPONSE TEXT:", text);
 
