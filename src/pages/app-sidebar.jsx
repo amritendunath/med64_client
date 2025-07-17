@@ -80,7 +80,7 @@ export function AppSidebar({ onSelectChatSession }) {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
         });
-
+        console.log("chatSessionsResponse", chatSessionsResponse)
         const text = await chatSessionsResponse.text();
         console.log("RAW RESPONSE TEXT:", text);
 
