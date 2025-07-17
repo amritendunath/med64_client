@@ -54,7 +54,7 @@ export function AppSidebar({ onSelectChatSession }) {
     const fetchData = async () => {
       try {
         // Fetch chat sessions from the server
-        const chatSessionsResponse = await fetch(`${process.env.REACT_APP_POINT}/agent/api/v1/generate-stream/chat-sessions`, {
+        const chatSessionsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-sessions`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -74,7 +74,7 @@ export function AppSidebar({ onSelectChatSession }) {
 
       try {
         // Fetch appointments from the server
-        const appointmentsResponse = await fetch(`${process.env.REACT_APP_POINT}/agent/api/v1/generate-stream/appointment/`, {
+        const appointmentsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/appointment/`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,

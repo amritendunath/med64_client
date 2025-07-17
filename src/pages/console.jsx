@@ -97,7 +97,7 @@ const ChatUI = () => {
   // }, [messages]);
 
   const makeApiCall = async (prompt) => {
-    const API_URL = `${process.env.REACT_APP_POINT}/agent/api/v1/generate-stream/`;
+    const API_URL = `${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -209,7 +209,7 @@ const ChatUI = () => {
 
   const endSession = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_POINT}/agent/api/v1/generate-stream/end-session`, {
+      const response = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/end-session`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -378,7 +378,7 @@ const ChatUI = () => {
     setMessages([]); // Clear current messages
     setLoading(true);
 
-    fetch(`${process.env.REACT_APP_POINT}/agent/api/v1/generate-stream/chat-history/${sessionId}`, {
+    fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-history/${sessionId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

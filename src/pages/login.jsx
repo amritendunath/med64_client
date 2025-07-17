@@ -323,14 +323,14 @@ const Login = () => {
 
   const handleOAuthLogin = (provider) => {
     if (provider === 'google') {
-      window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
+      window.location.href = `${process.env.REACT_APP_POINT_AUTH}/login/${provider}`
       // window.location.href = `http://localhost:5004/login/${provider}`
     }
     else if (provider === 'twitter') {
-      window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
+      window.location.href = `${process.env.REACT_APP_POINT_AUTH}/login/${provider}`
     }
     else if (provider === 'microsoft') {
-      window.location.href = `${process.env.REACT_APP_POINT}/auth/login/${provider}`
+      window.location.href = `${process.env.REACT_APP_POINT_AUTH}/login/${provider}`
     }
     else if (provider === 'phone') {
       navigate('/phone')  // Navigate to phone component
@@ -338,7 +338,7 @@ const Login = () => {
   }
 
   const statusEmail = async () => {
-    const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/email_status`, {
+    const response = await fetch(`${process.env.REACT_APP_POINT_AUTH}/login/email_status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -351,7 +351,7 @@ const Login = () => {
     return data.status
   }
   const checkUser = async () => {
-    const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/name_status`, {
+    const response = await fetch(`${process.env.REACT_APP_POINT_AUTH}/login/name_status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -367,7 +367,7 @@ const Login = () => {
   }
 
   const sendOtp = async () => {
-    const response = await fetch(`${process.env.REACT_APP_POINT}/auth/login/email`, {
+    const response = await fetch(`${process.env.REACT_APP_POINT_AUTH}/login/email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
