@@ -83,6 +83,7 @@ export function AppSidebar({ onSelectChatSession }) {
         console.log("chatSessionsResponse", chatSessionsResponse)
         console.log("chatSessionsResponse.content", chatSessionsResponse.content)
         console.log("chatSessionsResponse.content.sessions", chatSessionsResponse.content.sessions)
+        console.log("chatSessionsResponse.sessions", chatSessionsResponse.sessions)
         const text = await chatSessionsResponse.text();
         const json = await chatSessionsResponse.json();
         console.log("RAW RESPONSE TEXT:", text);
