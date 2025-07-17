@@ -17,7 +17,7 @@ import {
 import "../styles/styles.css"
 import "../components/styles/App.css";
 import geneticSvg from '../genetic-data-svgrepo-com.svg'
-
+import axios from 'axios';
 
 const data = {
   versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
@@ -74,34 +74,72 @@ export function AppSidebar({ onSelectChatSession }) {
         // } catch (error) {
         //   console.error('Error fetching chat sessions:', error);
         // }
-        const chatSessionsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-sessions`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          }
-        });
-        console.log("chatSessionsResponse", chatSessionsResponse)
-        console.log("chatSessionsResponse.content", chatSessionsResponse.content)
-        console.log("chatSessionsResponse.content.sessions", chatSessionsResponse.content.sessions)
-        console.log("chatSessionsResponse.sessions", chatSessionsResponse.sessions)
-        const text = await chatSessionsResponse.text();
-        const json = await chatSessionsResponse.json();
-        console.log("RAW RESPONSE TEXT:", text);
-        console.log("RAW RESPONSE JSON:", json);
+        // const chatSessionsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-sessions`, {
+        //   method: 'GET',
+        //   headers: {
+        //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        //   }
+        // });
+        // console.log("chatSessionsResponse", chatSessionsResponse)
+        // console.log("chatSessionsResponse.content", chatSessionsResponse.content)
+        // console.log("chatSessionsResponse.content.sessions", chatSessionsResponse.content.sessions)
+        // console.log("chatSessionsResponse.sessions", chatSessionsResponse.sessions)
+        // const text = await chatSessionsResponse.text();
+        // const json = await chatSessionsResponse.json();
+        // console.log("RAW RESPONSE TEXT:", text);
+        // console.log("RAW RESPONSE JSON:", json);
+
+        // try {
+        //   const chatSessionsData = JSON.parse(text);
+        //   console.log("chatSessionsData:", chatSessionsData);
+
+        //   if (chatSessionsData.sessions) {
+        //     const sortedSessions = chatSessionsData.sessions.sort((a, b) =>
+        //       new Date(b.timestamp) - new Date(a.timestamp)
+        //     );
+        //     setChatSessions(sortedSessions);
+        //   }
+        // } catch (error) {
+        //   console.error('Error parsing JSON:', error);
+        //   // Handle the error appropriately, e.g., display an error message to the user
+        // }
+
+
+        // ... other imports and component definition ...
 
         try {
-          const chatSessionsData = JSON.parse(text);
-          console.log("chatSessionsData:", chatSessionsData);
+          const response = await axios.get(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-sessions`, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+          });
 
-          if (chatSessionsData.sessions) {
-            const sortedSessions = chatSessionsData.sessions.sort((a, b) =>
+          console.log("RAW RESPONSE:", response);
+          console.log("RAW RESPONSE DATA:", response.data);
+
+          if (response.data && response.data.sessions) {
+            const sortedSessions = response.data.sessions.sort((a, b) =>
               new Date(b.timestamp) - new Date(a.timestamp)
             );
             setChatSessions(sortedSessions);
+          } else {
+            console.warn("No sessions data received or sessions is undefined");
+            // Optionally, handle the case where there are no sessions
           }
         } catch (error) {
-          console.error('Error parsing JSON:', error);
-          // Handle the error appropriately, e.g., display an error message to the user
+          console.error('Error fetching chat sessions:', error);
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.error('HTTP error:', error.response.status);
+            console.error('Response data:', error.response.data);
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.error('No response received:', error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error('Error setting up the request:', error.message);
+          }
         }
       } catch (error) {
         console.error('Error fetching chat sessions:', error);
