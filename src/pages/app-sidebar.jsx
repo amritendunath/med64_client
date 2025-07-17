@@ -50,31 +50,57 @@ export function AppSidebar({ onSelectChatSession }) {
   const [chatSessions, setChatSessions] = useState([]);
   const [appointments, setAppointments] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch chat sessions from the server
+        //   const chatSessionsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-sessions`, {
+        //     method: 'GET',
+        //     headers: {
+        //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        //     }
+        //   });
+        //   const text = await chatSessionsResponse.text()
+        //   console.log("RAW RESPONSE TEXT:", text);
+        //   const chatSessionsData = await chatSessionsResponse.json();
+        //   console.log("chatSessionsData:", chatSessionsData);
+
+        //   if (chatSessionsData.sessions) {
+        //     const sortedSessions = chatSessionsData.sessions.sort((a, b) =>
+        //       new Date(b.timestamp) - new Date(a.timestamp)
+        //     );
+        //     setChatSessions(sortedSessions);
+        //   }
+        // } catch (error) {
+        //   console.error('Error fetching chat sessions:', error);
+        // }
         const chatSessionsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/chat-sessions`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
         });
-        const text = await chatSessionsResponse.text()
-        console.log("RAW RESPONSE TEXT:", text);
-        const chatSessionsData = await chatSessionsResponse.json();
-        console.log("chatSessionsData:", chatSessionsData);
 
-        if (chatSessionsData.sessions) {
-          const sortedSessions = chatSessionsData.sessions.sort((a, b) =>
-            new Date(b.timestamp) - new Date(a.timestamp)
-          );
-          setChatSessions(sortedSessions);
+        const text = await chatSessionsResponse.text();
+        console.log("RAW RESPONSE TEXT:", text);
+
+        try {
+          const chatSessionsData = JSON.parse(text);
+          console.log("chatSessionsData:", chatSessionsData);
+
+          if (chatSessionsData.sessions) {
+            const sortedSessions = chatSessionsData.sessions.sort((a, b) =>
+              new Date(b.timestamp) - new Date(a.timestamp)
+            );
+            setChatSessions(sortedSessions);
+          }
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          // Handle the error appropriately, e.g., display an error message to the user
         }
       } catch (error) {
         console.error('Error fetching chat sessions:', error);
       }
-
       try {
         // Fetch appointments from the server
         const appointmentsResponse = await fetch(`${process.env.REACT_APP_POINT_AGENT}/api/v1/generate-stream/appointment/`, {
