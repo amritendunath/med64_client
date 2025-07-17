@@ -63,6 +63,7 @@ export function AppSidebar({ onSelectChatSession }) {
         const text = await chatSessionsResponse.text()
         console.log("RAW RESPONSE TEXT:", text);
         const chatSessionsData = await chatSessionsResponse.json();
+        console.log("chatSessionsData:", chatSessionsData);
 
         if (chatSessionsData.sessions) {
           const sortedSessions = chatSessionsData.sessions.sort((a, b) =>
